@@ -1,5 +1,6 @@
 ﻿using System.Configuration;
 using System.Collections.Specialized;
+using System.Diagnostics;
 
 namespace AV00_Shared.Configuration
 {
@@ -22,16 +23,25 @@ namespace AV00_Shared.Configuration
         // TODO: Handle nulls
         public ConfigurationService()
         {
-            RelayInboundTaskCollectionBatchSize = int.Parse(ConfigurationManager.AppSettings["RelayInboundTaskCollectionBatchSize"]);
-            RelayInboundTaskCollectionBatchDelayMs = int.Parse(ConfigurationManager.AppSettings["RelayInboundTaskCollectionBatchDelayMs"]);
-            RelayIssueReceipts = bool.Parse(ConfigurationManager.AppSettings["RelayIssueReceipts"]);
-            RelayEnableDebugLogging = bool.Parse(ConfigurationManager.AppSettings["RelayEnableDebugLogging"]);
-            TransportMessageFrameCount = int.Parse(ConfigurationManager.AppSettings["TransportMessageFrameCount"]);
-            DriveServiceUpdateFrequency = int.Parse(ConfigurationManager.AppSettings["DriveServiceUpdateFrequency"]);
-            ServiceBusClientSocket = ConfigurationManager.ConnectionStrings["ServiceBusClientSocket"].ConnectionString;
-            ServiceBusServerSocket = ConfigurationManager.ConnectionStrings["ServiceBusServerSocket"].ConnectionString;
-            SubscribeEventSocket = ConfigurationManager.ConnectionStrings["SubscribeEventSocket"].ConnectionString;
-            PushEventSocket = ConfigurationManager.ConnectionStrings["PushEventSocket"].ConnectionString;
+            try
+            {
+                RelayInboundTaskCollectionBatchSize = int.Parse(ConfigurationManager.AppSettings["RelayInboundTaskCollectionBatchSize"]);
+                RelayInboundTaskCollectionBatchDelayMs = int.Parse(ConfigurationManager.AppSettings["RelayInboundTaskCollectionBatchDelayMs"]);
+                RelayIssueReceipts = bool.Parse(ConfigurationManager.AppSettings["RelayIssueReceipts"]);
+                RelayEnableDebugLogging = bool.Parse(ConfigurationManager.AppSettings["RelayEnableDebugLogging"]);
+                TransportMessageFrameCount = int.Parse(ConfigurationManager.AppSettings["TransportMessageFrameCount"]);
+                DriveServiceUpdateFrequency = int.Parse(ConfigurationManager.AppSettings["DriveServiceUpdateFrequency"]);
+                ServiceBusClientSocket = ConfigurationManager.ConnectionStrings["ServiceBusClientSocket"].ConnectionString;
+                ServiceBusServerSocket = ConfigurationManager.ConnectionStrings["ServiceBusServerSocket"].ConnectionString;
+                SubscribeEventSocket = ConfigurationManager.ConnectionStrings["SubscribeEventSocket"].ConnectionString;
+                PushEventSocket = ConfigurationManager.ConnectionStrings["PushEventSocket"].ConnectionString;
+            }
+            catch (System.Exception ex)
+            {
+                Trace.WriteLine("Error reading configuration", ex.Message);
+                global::System.Diagnostics.Debugger.Break();
+                throw new System.Exception("Error reading configuration", ex);
+            }
         }
     }
 }
