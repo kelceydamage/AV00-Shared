@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace AV00_Shared.Logging
+﻿namespace AV00_Shared.Logging
 {
     public enum EnumLogMessageType
     {
