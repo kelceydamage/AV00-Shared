@@ -6,7 +6,7 @@ Details can be found here in the project plan readme
 [AV00 Primary Repo](https://github.com/kelceydamage/AV00)
 
 ## Making New Models For Use As Events
-The base object sent between services over ZeroMQ is `Event` (`IEvent`). Event is a simple carrier object capable of serializing and deserializing itself and an `EventModel` (`IEventModel`) it's carrying. You can see the documentation for `Event` here: [AV00 Transport Repo](https://github.com/kelceydamage/AV00-transport)
+The base object sent between services over ZeroMQ is an `Event<T>` (`IEvent`). Event is a simple carrier object capable of serializing and deserializing itself and an `EventModel` (`IEventModel`) it's carrying. You can see the documentation for `Event` here: [AV00 Transport Repo](https://github.com/kelceydamage/AV00-transport)
 
 Here is the template to make a new shared EventModel.
 ```c#
