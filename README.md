@@ -17,7 +17,7 @@ namespace AV00_Shared.Models
         public string MyNewProperty { get => myNewProperty; }
         private readonly string myNewProperty;
 
-        public LogEventModel(string ServiceName, string MyNewProperty, Guid? Id = null, string? TimeStamp = null) : base(ServiceName, Id, TimeStamp)
+        public MyNewEventModel(string ServiceName, string MyNewProperty, Guid? Id = null, string? TimeStamp = null) : base(ServiceName, Id, TimeStamp)
         {
             myNewProperty = MyNewProperty;
         }
@@ -27,13 +27,13 @@ A new event model must descend from EventModel. Implementing IEventModel is a gi
 
 For general use we can likely simplify this constructor into the following.
 ```c#
-        public LogEventModel(string ServiceName, string MyNewProperty) : base() { myNewProperty = MyNewProperty; }
+        public MyNewEventModel(string ServiceName, string MyNewProperty) : base() { myNewProperty = MyNewProperty; }
 ```
 
 If this model will be used with the Entity Framework, an explicit constructor with all values required and none set to nullable, will be needed in addition to the base constructor.
 ```c#
         // Entity Framework constructor. Used for creating an object from SQL.
-        public LogEventModel(string ServiceName, string MyNewProperty, Guid Id, string TimeStamp) : base(ServiceName, Id, TimeStamp)
+        public MyNewEventModel(string ServiceName, string MyNewProperty, Guid Id, string TimeStamp) : base(ServiceName, Id, TimeStamp)
         {
             myNewProperty = MyNewProperty;
         }
