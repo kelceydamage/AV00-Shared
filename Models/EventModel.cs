@@ -16,32 +16,36 @@ namespace AV00_Shared.Models
         public EventModel(string ServiceName, Guid? Id = null, string? TimeStamp = null)
         {
             serviceName = ServiceName;
-            CreateGuidIfNull(Id);
-            CreateTimestampIfNull(TimeStamp);
+            id = CreateGuidIfNull(Id);
+            timeStamp = CreateTimestampIfNull(TimeStamp);
         }
 
-        private void CreateGuidIfNull(Guid? Id = null)
+        private Guid CreateGuidIfNull(Guid? Id = null)
         {
+            Guid _id;
             if (Id is null)
             {
-                id = Guid.NewGuid();
+               _id = Guid.NewGuid();
             }
             else
             {
-                id = (Guid)Id;
+                _id = (Guid)Id;
             }
+            return _id;
         }
 
-        private void CreateTimestampIfNull(string? TimeStamp = null)
+        private string CreateTimestampIfNull(string? TimeStamp = null)
         {
+            string _timeStamp;
             if (TimeStamp is null)
             {
-                timeStamp = DateTime.Now.ToString("o", CultureInfo.InvariantCulture);
+                _timeStamp = DateTime.Now.ToString("o", CultureInfo.InvariantCulture);
             }
             else
             {
-                timeStamp = TimeStamp;
+                _timeStamp = TimeStamp;
             }
+            return _timeStamp;
         }
     }
 }
