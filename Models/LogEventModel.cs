@@ -1,7 +1,9 @@
 ﻿using AV00_Shared.Logging;
+using System.Text.Json.Serialization;
 
 namespace AV00_Shared.Models
 {
+    [Serializable]
     public class LogEventModel : EventModel, IEventModel
     {
         public EnumLogMessageType LogType { get => logType; }
@@ -15,7 +17,8 @@ namespace AV00_Shared.Models
             message = Message;
         }
 
-        // Entity Framework constructor. Used for creating an object from SQL.
+        // Entity Framework constructor. Used for creating an object from SQL. Also required by JSON.
+        [JsonConstructor]
         public LogEventModel(string ServiceName, EnumLogMessageType LogType, string Message, Guid Id, string TimeStamp) : base(ServiceName, Id, TimeStamp)
         {
             logType = LogType;
