@@ -20,7 +20,7 @@ namespace AV00_Shared.Models
             timeStamp = CreateTimestampIfNull(TimeStamp);
         }
 
-        private Guid CreateGuidIfNull(Guid? Id = null)
+        private static Guid CreateGuidIfNull(Guid? Id = null)
         {
             Guid _id;
             if (Id is null)
@@ -34,7 +34,7 @@ namespace AV00_Shared.Models
             return _id;
         }
 
-        private string CreateTimestampIfNull(string? TimeStamp = null)
+        private static string CreateTimestampIfNull(string? TimeStamp = null)
         {
             string _timeStamp;
             if (TimeStamp is null)
