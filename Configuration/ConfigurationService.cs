@@ -12,10 +12,11 @@ namespace AV00_Shared.Configuration
         public bool RelayEnableDebugLogging;
         public int TransportMessageFrameCount;
         public int DriveServiceUpdateFrequency;
-        public string ServiceBusClientSocket;
-        public string ServiceBusServerSocket;
-        public string SubscribeEventSocket;
-        public string PushEventSocket;
+        public string TransportRelayClientSocket;
+        public string TransportRelayServerSocket;
+        public string EventSocket;
+        public string EventReceiptSocket;
+        public string EventLogSocket;
 
         public NameValueCollection AppSettings => ConfigurationManager.AppSettings;
         public ConnectionStringSettingsCollection ConnectionStrings => ConfigurationManager.ConnectionStrings;
@@ -31,10 +32,11 @@ namespace AV00_Shared.Configuration
                 RelayEnableDebugLogging = bool.Parse(ConfigurationManager.AppSettings["RelayEnableDebugLogging"]);
                 TransportMessageFrameCount = int.Parse(ConfigurationManager.AppSettings["TransportMessageFrameCount"]);
                 DriveServiceUpdateFrequency = int.Parse(ConfigurationManager.AppSettings["DriveServiceUpdateFrequency"]);
-                ServiceBusClientSocket = ConfigurationManager.ConnectionStrings["ServiceBusClientSocket"].ConnectionString;
-                ServiceBusServerSocket = ConfigurationManager.ConnectionStrings["ServiceBusServerSocket"].ConnectionString;
-                SubscribeEventSocket = ConfigurationManager.ConnectionStrings["SubscribeEventSocket"].ConnectionString;
-                PushEventSocket = ConfigurationManager.ConnectionStrings["PushEventSocket"].ConnectionString;
+                TransportRelayClientSocket = ConfigurationManager.ConnectionStrings["TransportRelayClientSocket"].ConnectionString;
+                TransportRelayServerSocket = ConfigurationManager.ConnectionStrings["TransportRelayServerSocket"].ConnectionString;
+                EventSocket = ConfigurationManager.ConnectionStrings["EventSocket"].ConnectionString;
+                EventReceiptSocket = ConfigurationManager.ConnectionStrings["EventReceiptSocket"].ConnectionString;
+                EventLogSocket = ConfigurationManager.ConnectionStrings["EventLogSocket"].ConnectionString;
             }
             catch (System.Exception ex)
             {
